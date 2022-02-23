@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+	    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\NeoCA.Application\NeoCA.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\NeoCA.Identity\NeoCA.Identity.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\NeoCA.Infrastructure\NeoCA.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\NeoCA.Persistence\NeoCA.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\v1\account.v1.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\v1\category.v1.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\v1\event.v1.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\v2\category.v2.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+</Project>

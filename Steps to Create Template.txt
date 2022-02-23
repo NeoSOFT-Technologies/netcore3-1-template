@@ -1,0 +1,21 @@
+Resources:
+https://github.com/sayedihashimi/template-sample
+https://automationrhapsody.com/create-project-for-net-core-custom-template/
+https://dotnetninja.net/2021/03/creating-project-templates-for-dotnet-part-1-getting-started/
+https://github.com/dotnet/templating/wiki/Reference-for-template.json
+
+Steps to make solution template-ready:
+Hide .vs folder if not hidden already
+Change names of context classes and connection strings
+Remove user secrets and drive connection strings from appsettings
+Remove dbProvider from appsettings
+Remove dbProvider switch case from HealthCheckExtensions, IdentityExtensions, PersistenceExtensions and DbFixture
+Add if else in .csproj for database related packages if not present
+Add if else in HealthCheckExtensions, IdentityExtensions, PersistenceExtensions and DbFixture for database
+Delete UI Project if present
+Delete bin, obj folders from all the projects
+Add if else in docker-compose if not present
+Add if else in sln to add/remove projects if needed
+Change last step in Integration Testing.yml workflow to following
+- name: Test
+      run: dotnet test --filter FullyQualifiedName~IntegrationTests --no-build --verbosity normal

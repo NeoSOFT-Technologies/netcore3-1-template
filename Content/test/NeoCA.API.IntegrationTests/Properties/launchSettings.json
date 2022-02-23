@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NeoCA.API.IntegrationTests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

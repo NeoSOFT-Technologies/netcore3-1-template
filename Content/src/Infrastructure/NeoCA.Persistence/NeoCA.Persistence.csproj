@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="3.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
+		<!--#if (Database == "MSSQL")-->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+		<!--#endif-->
+		<!--#if (Database == "PGSQL")-->
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.1" />
+		<!--#endif-->
+		<!--#if (Database == "MySQL")-->
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
+		<!--#endif-->
+		<!--#if (Database == "SQLite")-->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
+		<!--#endif-->
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.10" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Core\NeoCA.Application\NeoCA.Application.csproj" />
+	</ItemGroup>
+
+	<!--#if (Database == "SQLite")-->
+	<ItemGroup>
+	  <Folder Include="SqliteDb\" />
+	</ItemGroup>
+	<!--#endif-->
+	
+</Project>

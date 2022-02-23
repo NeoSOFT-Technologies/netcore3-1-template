@@ -1,0 +1,162 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Neosoft Technologies",
+    "classifications": ["Web", "Solution"],
+    "name": "Neosoft Technologies Clean Architecture",
+    "defaultName": "MyCleanProject",
+    "identity": "Neosoft.Technologies.Clean.Architecture",
+    "shortName": "neotech-ca",
+    "tags": {
+      "language": "C#",
+      "type": "solution"
+    },
+    "sourceName": "NeoCA",
+    "preferNameDirectory": true,
+	"guids": [
+		"B4CF959C-EBE1-4900-980A-EBAFB84860DF",
+		"6BF9057E-C82C-4348-9A6A-D6D6FF28CF8D",
+		"153F204B-20E6-46A6-BB73-BAD48B580CC4",
+		"4BC74327-446B-4BFF-BDDD-6BE41FCB3544",
+		"FA8B8595-2641-44BC-8AAD-DBC3BD75A404",
+		"17B7B793-4B9F-4040-8722-6BF5E8ED6FFB",
+		"AC805082-9536-4D17-A3F3-44E2CE599F2A",
+		"D8609A22-BB9B-4D39-9D1D-4ADF86BE2F41",
+		"431CA450-9265-4823-9F43-1039D61A7069",
+		"3A087A69-FD6C-4AA8-89D4-93BC58FA91D6",
+		"631764D0-EDB5-4804-B943-27CE0E26C6D4",
+		"93AE446B-39C0-49BE-BA11-85293B15C929",
+		"A93BA1F5-1BEF-4252-B2C9-E3D545685684",
+		"EE967140-977B-4DAC-89C1-E06D92A32395",
+		"6559162B-B5AE-499B-9850-9D556E7B54C8",
+		"FA006BC5-51EE-4B7E-912A-905F508C901E",
+		"4F927D13-8CF2-4039-BA22-E7BB07BC8D93",
+		"DF730924-E57B-4551-8F91-C8AA5A4274A7",
+		"C6B70E88-F7FB-47C1-8A78-E5064DEED58F"
+	],
+	"description": "Creates Clean Architecture Project",
+	"symbols": {
+		"Framework": {
+			"type": "parameter",
+			"description": "The target framework for the project",
+			"datatype": "choice",
+			"choices": [
+			{
+				"choice": "netcoreapp3.1",
+				"description": "Target netcoreapp3.1"
+			}
+			],
+			"replaces": "netcoreapp3.1",
+			"defaultValue": "netcoreapp3.1"
+		},
+		"Database": {
+			"type": "parameter",
+			"description": "Database support for the project",
+			"datatype": "choice",
+			"choices": [
+				{
+					"choice": "MSSQL",
+					"description": "Microsoft SQL Server"
+				},
+				{
+					"choice": "PGSQL",
+					"description": "PostgreSQL Server"
+				},
+				{
+					"choice": "MySQL",
+					"description": "MySQL Server"
+				},
+				{
+					"choice": "SQLite",
+					"description": "SQLite Server"
+				}
+			],
+			"defaultValue": "MSSQL"
+		},
+		"Communication": {
+			"type": "parameter",
+			"description": "Communication Protocol for the project",
+			"datatype": "choice",
+			"choices": [
+				{
+					"choice": "REST",
+					"description": "REST API"
+				},
+				{
+					"choice": "gRPC",
+					"description": "gRPC"
+				}
+			],
+			"defaultValue": "REST"
+		}
+	},
+	"sources": [
+		{
+			"modifiers": [
+				{
+					"condition": "(Database == \"MSSQL\")",
+					"exclude": [
+						"src/Infrastructure/NeoCA.Identity/Migrations/PGSQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/MySQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/SQLite/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/PGSQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/MySQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/SQLite/**",		
+						"src/Infrastructure/NeoCA.Persistence/SqliteDb/**",
+						"test/NeoCA.API.IntegrationTests/db/**"
+					]
+				},
+				{
+					"condition": "(Database == \"PGSQL\")",
+					"exclude": [
+						"src/Infrastructure/NeoCA.Identity/Migrations/MSSQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/MySQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/SQLite/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/MSSQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/MySQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/SQLite/**",		
+						"src/Infrastructure/NeoCA.Persistence/SqliteDb/**",
+						"test/NeoCA.API.IntegrationTests/db/**"			
+					]
+				},
+				{
+					"condition": "(Database == \"MySQL\")",
+					"exclude": [
+						"src/Infrastructure/NeoCA.Identity/Migrations/MSSQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/PGSQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/SQLite/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/MSSQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/PGSQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/SQLite/**",		
+						"src/Infrastructure/NeoCA.Persistence/SqliteDb/**",
+						"test/NeoCA.API.IntegrationTests/db/**"
+					]
+				},
+				{
+					"condition": "(Database == \"SQLite\")",
+					"exclude": [
+						"src/Infrastructure/NeoCA.Identity/Migrations/MSSQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/PGSQL/**",
+						"src/Infrastructure/NeoCA.Identity/Migrations/MySQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/MSSQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/PGSQL/**",
+						"src/Infrastructure/NeoCA.Persistence/Migrations/MySQL/**"			
+					]
+				},
+				{
+					"condition": "(Communication == \"REST\")",
+					"exclude": [
+						"src/gRPC/**"
+					]
+				},
+				{
+					"condition": "(Communication == \"gRPC\")",
+					"exclude": [
+						"src/API/**",
+						"test/Demo.API.IntegrationTests/**",
+						"test/Demo.API.UnitTests/**"
+					]
+				}
+			]
+		}
+	]
+}

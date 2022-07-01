@@ -5,6 +5,7 @@ https://dotnetninja.net/2021/03/creating-project-templates-for-dotnet-part-1-get
 https://github.com/dotnet/templating/wiki/Reference-for-template.json
 
 Steps to make solution template-ready:
+Change solution, project and folder names to simpler one like NeoCA
 Hide .vs folder if not hidden already
 Change names of context classes and connection strings
 Remove user secrets and drive connection strings from appsettings
